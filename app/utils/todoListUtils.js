@@ -49,6 +49,11 @@ export const menuItemsKeys = [
 
 export const menuItems = menuItemsKeys.map(key => ({ ...filterOptions[key], key });
 
+
+export function getFilterObjectForKey(key) {
+    return menuItems[key].filterPropertiesGetter();
+}
+
 function compareCompleted(completedValue) {
     if (completedValue === undefined ) {
         return function(){ return true; };

@@ -9,6 +9,12 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  }, 
+  menuItem: {
+      
+  },
+  activeItem: {
+      
   }
 };
 
@@ -22,6 +28,7 @@ export default class Menu extends React.PureComponent {
     onSelectItem: PropTypes.func.isRequired,
     triggerRenderer: PropTypes.element,
     itemRenderer: PropTypes.func,
+    activeKey: PropTypes.string,
   }
 
   static defaultProps = {
@@ -53,6 +60,10 @@ export default class Menu extends React.PureComponent {
     this.props.onSelectItem(key);
     this.hideMenu();
   }
+  
+  isItemActive = (item) => {
+      return item.key === this.props.activeKey;
+  }
 
   render() {
 
@@ -64,8 +75,13 @@ export default class Menu extends React.PureComponent {
         >
           {
             this.props.items.map(item => {
+              const styles = { ...styles.menuItem, ...(isItemActive(item) ? styles.activeItem : {}) };
               return (
-                <MenuItem key={item.key} onPress={()=> this.handlePressItem(item.key)}>
+                <MenuItem 
+                  key={item.key}
+                  onPress={()=> this.handlePressItem(item.key)}
+                  styles={styles}
+                >
                   {this.props.itemRenderer(item)}
                 </MenuItem>
               );

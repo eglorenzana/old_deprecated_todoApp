@@ -11,7 +11,7 @@ export { menuItemsKeys };
 
 const TodoMenu = function(props) {
   const handleSelectItem = (key) => {
-    props.onChangeFilter(menuItems[key].filterPropertiesGetter());
+    props.onChangeFilter(key);
   }
 
   return (
