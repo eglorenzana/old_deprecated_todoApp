@@ -1,6 +1,6 @@
 import  { dayTimeRange, filterByDateRange, isDateInRange } from 'utils/dates';
 
-const filterOptions = {
+const filterOptions = Object.freeze({
   today: {
     label: 'Today',
     filterPropertiesGetter: function() {
@@ -38,17 +38,34 @@ const filterOptions = {
       }
     }
   },
-]
+});
+
+export const todoDateTypeKeys = [
+    'today',
+    'tomorrow',
+    'someday',
+];
 
 export const menuItemsKeys = [
-  'today',
-  'tomorrow',
-  'someday',
+  ...todoDateTypeKeys,
   'completed',
 ];
 
 export const menuItems = menuItemsKeys.map(key => ({ ...filterOptions[key], key });
 
+export const initialPropsForKeys = Object.freeze({
+  today: {
+    date: new Date(),
+    title: filterOptions.today.label
+  },
+  tomorrow: {
+    date: dayTimeRange(new Date(), 1).dateBase,
+    title: filterOptions.tomorrow.label
+  },
+  someday: {
+
+  },
+});
 
 export function getFilterObjectForKey(key) {
     return menuItems[key].filterPropertiesGetter();
@@ -59,7 +76,7 @@ function compareCompleted(completedValue) {
         return function(){ return true; };
     }
     return function(todo) {
-        completedValue == todo.completed;
+        return completedValue == todo.completed;
     }
 }
 

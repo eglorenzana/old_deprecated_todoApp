@@ -29,7 +29,7 @@ function dayTimeRange(date) {
   const endDate = new Date(date);
   startDate.setHours(0,0,0);
   endDate.setHours(23,59,59);
-  return { startDate, endDate };
+  return { startDate, endDate, dateBase: date };
 }
 
 export function dayTimeRange(date, dayOffset = 0) {
