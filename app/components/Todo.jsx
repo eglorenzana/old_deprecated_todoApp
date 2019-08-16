@@ -13,7 +13,7 @@ const styles = {
   dateDetails: {
 
   },
-  notes: {
+  description: {
 
   },
 }
@@ -21,7 +21,7 @@ const styles = {
 
 const Todo = function(props) {
   const {
-    item: { title, date, notes }, // this could be broke in line-per-property
+    item: { title, date, description }, // this could be broke in line-per-property
     showDate,
   } = props;
 
@@ -34,7 +34,7 @@ const Todo = function(props) {
         { showDate && <Text>{dateString(date)}</Text> }
         <Text>{timeString(date)}</Text##>
       </View>
-      <View style={styles.notes} >
+      <View style={styles.description} >
       </View>
     </View>
   );

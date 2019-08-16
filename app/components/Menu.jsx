@@ -66,12 +66,12 @@ export default class Menu extends React.PureComponent {
   }
 
   render() {
-
+    const ButtonForMenu = this.buttonForMenu;
     return (
       <View style={styles.container}>
         <Menu
           ref={this.setMenuRef}
-          button={this.props.triggerRenderer}
+          button={<ButtonForMenu />}
         >
           {
             this.props.items.map(item => {
