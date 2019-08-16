@@ -1,4 +1,4 @@
-import  { dayTimeRange } from 'utils/dates';
+import  { dayTimeRange, filterByDateRange, isDateInRange } from 'utils/dates';
 
 const filterOptions = {
   today: {
@@ -48,3 +48,33 @@ export const menuItemsKeys = [
 ];
 
 export const menuItems = menuItemsKeys.map(key => ({ ...filterOptions[key], key });
+
+function compareCompleted(completedValue) {
+    if (completedValue === undefined ) {
+        return function(){ return true; };
+    }
+    return function(todo) {
+        completedValue == todo.completed;
+    }
+}
+
+
+function filterTodos(list, startDate, endDate, others = {}) {
+    const completeFilter = compareCompleted(others.completed);
+    return list.filter(todo => {
+        return (
+            completeFilter(todo) &&
+            isDateInRange(todo.date, startDate, endDate)
+        );
+    })
+}
+
+export function filterTodoItems(list, filterObject = {}) {
+    const {
+        startDate,
+        endDate,
+        ...others
+    } = filterObject;
+    const filter = Object.keys(others).length ? filterTodos : filterByDateRange;
+    return filter(list, startDate, endDate, others);
+}

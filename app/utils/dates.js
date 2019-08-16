@@ -3,8 +3,11 @@ function parseDate(...date) {
   return new Date(...date);
 }
 
-export function isDateInRange(date, startDate, endDate) {
-  return (startDate <= date && date <= endDate);
+export function isDateInRange(dateValue, startDate, endDate) {
+    const date = dateValue.getTime();
+    const start = (startDate && startDate.getTime()) || 0;
+    const end = (endDate && endDate.getTime()) || Infinity;
+    return (start <= date && date <= end);
 }
 
 export function filterByDateRange(objList, startDate, endDate) {
