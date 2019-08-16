@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 import TodoForm from 'components/TodoForm';
 import ItemShape from 'shapes/itemShape';
-import { todoDateTypeKeys, initialPropsForKeys } from 'utils/todoListUtils';
+import { todoDateCategoryKeys, initialPropsForKeys } from 'utils/todoListUtils';
 import { saveNewItem } from 'utils/todoStorage';
 
 
@@ -26,21 +26,21 @@ const CreateTodo = function(props) {
       hasError = true;
     }
   }
-  
+  const dateKey = props.dateKey; // this should come from navigation params: props.navigation.params.dateKey
   return (
     <View style={styles.container} >
       <TodoForm 
-        initialAttributes={initialPropsForKeys[props.dateKey]}
+        initialAttributes={initialPropsForKeys[dateKey]}
         onSave={handleSaveTodo}
         message={message}
         hasError={hasError}
-      /> 
+      />
     </View>
   );
 }
 
 CreateTodo.propTypes = {
-  dateKey: PropTypes.oneOf(todoDateTypeKeys)
+  dateKey: PropTypes.oneOf(todoDateCategoryKeys)
 };
 
 export default CreateTodo;

@@ -1,57 +1,25 @@
 import  { dayTimeRange, filterByDateRange, isDateInRange } from 'utils/dates';
 
-const filterOptions = Object.freeze({
-  today: {
-    label: 'Today',
-    filterPropertiesGetter: function() {
-      const today = new Date();
-      return dayTimeRange(today);
-    }
-  },
-  tomorrow: {
-    label: 'Tomorrow',
-    filterPropertiesGetter: function() {
-      const today = new Date();
-      return dayTimeRange(today, 1);
-    }
-  },
-  someday: {
-    label: 'Some day',
-    filterPropertiesGetter: function() {
-      const today = new Date();
-      const someDay = dayTimeRange(today, 2);
-      return {
-        startDate: someDay.startDate,
-        endDate: undefined
-      };
-    }
-  },
-  completed: {
-    label: 'Completed',
-    filterPropertiesGetter: function() {
-      const today = new Date();
-      const todayRange = dayTimeRange(today);
-      return {
-        completed: true,
-        endDate: todayRange.startDate,
-        startDate: undefined,
-      }
-    }
-  },
+const todoDateCategories = [
+  { key: 'today', label: 'Today' },
+  { key: 'tomorrow', label: 'Tomorrow' },
+  { key: 'someday', label: 'Some Day' },
+];
+
+const todoCategories = [
+  ...todoDateCategories,
+  { key: 'completed', label: 'Completed' }
+];
+
+
+export const todoDateCategoryKeys = todoDateCategories.map(todo => todo.key);
+
+export const menuItemsKeys = todoCategories.map(todo => todo.key);
+
+export const menuItems = menuItemsKeys.map((key, index) => ({
+  key,
+  label: todoCategories[index].label
 });
-
-export const todoDateTypeKeys = [
-    'today',
-    'tomorrow',
-    'someday',
-];
-
-export const menuItemsKeys = [
-  ...todoDateTypeKeys,
-  'completed',
-];
-
-export const menuItems = menuItemsKeys.map(key => ({ ...filterOptions[key], key });
 
 export const initialPropsForKeys = Object.freeze({
   today: {
@@ -67,8 +35,38 @@ export const initialPropsForKeys = Object.freeze({
   },
 });
 
+
+const filterPropertiesGetter = Object.freeze({
+  today: function() {
+    const today = new Date();
+    return dayTimeRange(today);
+  },
+  tomorrow: function() {
+    const today = new Date();
+    return dayTimeRange(today, 1);
+  },
+  someday: function() {
+    const today = new Date();
+    const someDay = dayTimeRange(today, 2);
+    return {
+      startDate: someDay.startDate,
+      endDate: undefined
+    };
+  },
+  completed: function() {
+    const today = new Date();
+    const todayRange = dayTimeRange(today);
+    return {
+      completed: true,
+      endDate: todayRange.startDate,
+      startDate: undefined,
+    }
+  },
+});
+
 export function getFilterObjectForKey(key) {
-    return menuItems[key].filterPropertiesGetter();
+    const getter = filterPropertiesGetter[key];
+    return (getter && getter()) || {};
 }
 
 function compareCompleted(completedValue) {
@@ -76,7 +74,7 @@ function compareCompleted(completedValue) {
         return function(){ return true; };
     }
     return function(todo) {
-        return completedValue == todo.completed;
+        return completedValue === todo.completed;
     }
 }
 
@@ -100,3 +98,27 @@ export function filterTodoItems(list, filterObject = {}) {
     const filter = Object.keys(others).length ? filterTodos : filterByDateRange;
     return filter(list, startDate, endDate, others);
 }
+
+const actionsAttributes = {
+  today: {
+    position: 3,
+    iconName: 'today',
+    material: true,
+  },
+  tomorrow: {
+    position: 2,
+    iconName: 'calendar-today',
+    material: true,
+  },
+  someday: {
+    position: 1,
+    iconName: 'date-range',
+    material: true,
+  }
+}
+
+export function actionsForMainFAB = todoDateCategoryKeys.map((key, index) => ({
+  ...actionsAttributes[key],
+  name: key,
+  text: todoDateCategories[index].label,
+}))
