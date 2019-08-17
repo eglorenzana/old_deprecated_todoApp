@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import TodoFilterMenu, { menuItemsKeys} from 'app/components/TodoFilterMenu';
 import TodoList from 'app/components/TodoList';
 import { getTodoList } from 'app/utils/todoStorage';
 import { getFilterObjectForKey, filterTodoItems } from 'app/utils/todoListUtils';
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start'
@@ -18,7 +18,7 @@ const styles = {
   mainContainer: {
 
   },
-}
+});
 
 export default class TodoListView extends React.Component {
   static propTypes = {

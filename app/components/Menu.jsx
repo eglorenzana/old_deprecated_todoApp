@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }, 
+  },
   menuItem: {
-      
+
   },
   activeItem: {
-      
+
   }
-};
+});
 
 
 export default class Menu extends React.PureComponent {
@@ -60,7 +60,7 @@ export default class Menu extends React.PureComponent {
     this.props.onSelectItem(key);
     this.hideMenu();
   }
-  
+
   isItemActive = (item) => {
       return item.key === this.props.activeKey;
   }
@@ -75,9 +75,12 @@ export default class Menu extends React.PureComponent {
         >
           {
             this.props.items.map(item => {
-              const styles = { ...styles.menuItem, ...(isItemActive(item) ? styles.activeItem : {}) };
+              const styles = {
+                ...styles.menuItem,
+                ...(isItemActive(item) ? styles.activeItem : {})
+              };
               return (
-                <MenuItem 
+                <MenuItem
                   key={item.key}
                   onPress={()=> this.handlePressItem(item.key)}
                   styles={styles}

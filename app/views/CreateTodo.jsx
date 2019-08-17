@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import TodoForm from 'app/components/TodoForm';
 import ItemShape from 'app/shapes/itemShape';
@@ -8,12 +8,12 @@ import { todoDateCategoryKeys, initialPropsForKeys } from 'app/utils/todoListUti
 import { saveNewItem } from 'app/utils/todoStorage';
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
   }
-};
+});
 
 const CreateTodo = function(props) {
   let message = '';

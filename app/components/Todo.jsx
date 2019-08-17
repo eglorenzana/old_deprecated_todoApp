@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { dateString, timeString } from 'app/utils/dates';
 import ItemShape from 'app/shapes/itemShape';
 
 
-const styles = {
+const styles = StyleSheet.create({
   title: {
 
   },
@@ -16,7 +16,7 @@ const styles = {
   description: {
 
   },
-}
+});
 
 
 const Todo = function(props) {

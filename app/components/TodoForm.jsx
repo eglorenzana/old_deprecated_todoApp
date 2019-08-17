@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View , Button} from 'react-native';
+import { View , Button, StyleSheet } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 
 import ItemShape from 'app/shapes/itemShape';
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -17,7 +17,7 @@ const styles = {
   optionsContainer: {
 
   },
-};
+});
 
 
 export default class TodoForm extends React.Component {

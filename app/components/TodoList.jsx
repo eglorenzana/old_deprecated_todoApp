@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 import Todo from 'app/components/Todo';
 
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
   }
-};
+});
 
 
 export default function TodoList(props) {
