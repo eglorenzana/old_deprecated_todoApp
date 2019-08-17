@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
-import TodoForm from 'components/TodoForm';
-import ItemShape from 'shapes/itemShape';
-import { todoDateCategoryKeys, initialPropsForKeys } from 'utils/todoListUtils';
-import { saveNewItem } from 'utils/todoStorage';
+import TodoForm from 'app/components/TodoForm';
+import ItemShape from 'app/shapes/itemShape';
+import { todoDateCategoryKeys, initialPropsForKeys } from 'app/utils/todoListUtils';
+import { saveNewItem } from 'app/utils/todoStorage';
 
 
 const styles = {
@@ -29,7 +29,7 @@ const CreateTodo = function(props) {
   const dateKey = props.dateKey; // this should come from navigation params: props.navigation.params.dateKey
   return (
     <View style={styles.container} >
-      <TodoForm 
+      <TodoForm
         initialAttributes={initialPropsForKeys[dateKey]}
         onSave={handleSaveTodo}
         message={message}

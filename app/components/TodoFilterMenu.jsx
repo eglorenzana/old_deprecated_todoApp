@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
-import Menu from 'components/Menu';
-import { menuItems, menuItemsKeys } from 'utils/todoListUtils';
+import Menu from 'app/components/Menu';
+import { menuItems, menuItemsKeys } from 'app/utils/todoListUtils';
 
 
 export { menuItemsKeys };

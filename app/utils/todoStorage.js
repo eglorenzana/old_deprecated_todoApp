@@ -1,4 +1,4 @@
-import * as storage from 'utils/storage';
+import * as storage from 'app/utils/storage';
 
 const TODO_LIST_KEY ='TODO_LIST_STORAGE_KEY';
 const DEFAULT_TODO_LIST = [];

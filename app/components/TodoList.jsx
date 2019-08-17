@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 
-import Todo from 'components/Todo';
+import Todo from 'app/components/Todo';
 
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, FlatList } from 'react-native';
-import TodoFilterMenu, { menuItemsKeys} from 'components/TodoFilterMenu';
-import TodoList from 'components/TodoList';
-import { getTodoList } from 'utils/todoStorage';
-import { getFilterObjectForKey, filterTodoItems } from 'utils/todoListUtils';
+import TodoFilterMenu, { menuItemsKeys} from 'app/components/TodoFilterMenu';
+import TodoList from 'app/components/TodoList';
+import { getTodoList } from 'app/utils/todoStorage';
+import { getFilterObjectForKey, filterTodoItems } from 'app/utils/todoListUtils';
 
 
 const styles = {
@@ -28,17 +28,17 @@ export default class TodoListView extends React.Component {
   constructor(props) {
     super(props);
     const list = getTodoList()
-    
+
     this.state = {
       filterKey: this.props.initialFilterKey,
       items: filterItems(getTodoList(), this.props.initialFilterKey),
     }
   }
-  
+
   filterItems = (itemList, key) => {
       return filterTodoItems(itemList, getFilterObjectForKey(key));
   }
-  
+
   handleOnChangeFilter = (key) => {
       this.setState({
           filterKey: key,
@@ -50,7 +50,7 @@ export default class TodoListView extends React.Component {
     return (
         <View style={styles.container}>
             <View style={styles.filterContainer}>
-                <TodoFilterMenu 
+                <TodoFilterMenu
                     activeKey={this.state.filterKey}
                     onChangeFilter={this.handleOnChangeFilter}
                 />

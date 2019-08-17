@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
-import { dateString, timeString } from 'utils/dates';
-import ItemShape from 'shapes/itemShape';
+import { dateString, timeString } from 'app/utils/dates';
+import ItemShape from 'app/shapes/itemShape';
 
 
 const styles = {

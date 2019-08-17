@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View , Button} from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 
-import ItemShape from 'shapes/itemShape';
+import ItemShape from 'app/shapes/itemShape';
 
 
 const styles = {
@@ -12,10 +12,10 @@ const styles = {
     justifyContent: 'flex-start',
   },
   fieldsContainer: {
-    
+
   },
   optionsContainer: {
-    
+
   },
 };
 
@@ -24,16 +24,16 @@ export default class TodoForm extends React.Component {
   static propTypes = {
       initialAttributes: PropTypes.shape(ItemShape),
       onSave: PropTypes.func.isRequired,
-      message: PropTypes.string, 
+      message: PropTypes.string,
       hasError: PropTypes.bool,
   }
-  
+
   static defaultProperties = {
     message: '',
     hasError: false,
     initialAttributes: {}
   }
-  
+
   constructor(props) {
     super(props);
     const {
@@ -48,34 +48,34 @@ export default class TodoForm extends React.Component {
       completed: false,
     }
   }
-  
+
   handleSave = () => {
     const { title, description, date, completed } = this.state;
     this.props.onSave({
       title, description, date, completed
     });
   }
-  
+
   handleChangeTitle = (title) => {
     this.setState({ title });
   }
-  
+
   handleChangeDescription = (description) => {
     this.setState({ description });
   }
-  
+
   render() {
-    
+
     return (
       <View style={styles.container} >
         <View style={styles.fieldsContainer} >
-          <TextField 
-            label="Title" 
+          <TextField
+            label="Title"
             value={this.state.title}
             onChangeText={this.handleChangeTitle}
           />
-          <TextField 
-            label="Description" 
+          <TextField
+            label="Description"
             value={this.state.description}
             onChangeText={this.handleChangeDescription}
             multiline
