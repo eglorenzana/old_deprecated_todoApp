@@ -44,10 +44,7 @@ export default class TodoListView extends React.Component {
   }
 
   handleOnChangeFilter = (key) => {
-      this.setState({
-          filterKey: key,
-          items: filterItems(getTodoList(), key)
-      })
+      this.props.navigator.navigate(key);
   }
 
   render() {

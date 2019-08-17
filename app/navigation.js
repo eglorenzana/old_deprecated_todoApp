@@ -17,15 +17,17 @@ menuItemsKeys.forEach(key => {
   Stacks[key] = createStackNavigator({ // in this way, we can provide the back behaviour easily
     TodoMain: MainScreen,
     [SCREEN_NAME]: CreateTodoScreen,
-  })
+  }, {
+    initialRouteName: 'TodoMain',
+  });
 });
 
 
 export const DrawerRoutes = Object.freeze({
-  Today: Stacks.today,
-  Tomorrow: Stacks.tomorrow,
-  Someday: Stacks.someday,
-  Completed: Stacks.completed,
+  today: Stacks.today,
+  tomorrow: Stacks.tomorrow,
+  someday: Stacks.someday,
+  completed: Stacks.completed,
 });
 
 const DrawerNavigator = createDrawerNavigator(DrawerRoutes, {

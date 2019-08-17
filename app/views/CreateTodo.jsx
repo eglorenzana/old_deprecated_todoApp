@@ -54,6 +54,6 @@ export default CreateTodo;
 
 
 export function CreateTodoScreen(props) { // this is connected with a navigator
-  const dateKey = props.navigator.getParam(DATE_KEY_PROP);
+  const dateKey = props.navigator.getParam(DATE_KEY_PROP, 'today');
   return (<CreateTodo {...props} dateKey={dateKey} />)
 }
