@@ -25,6 +25,10 @@ export default class TodoListView extends React.Component {
     initialFilterKey: PropTypes.oneOf(menuItemsKeys),
   }
 
+  static navigationOptions = {
+    title: 'Todos',
+  };
+
   constructor(props) {
     super(props);
     const list = getTodoList()
@@ -61,4 +65,8 @@ export default class TodoListView extends React.Component {
         </View>
     );
   }
+}
+
+export function TodoMainFactory(filterKey) {
+  return (<TodoListView {...props} initialFilterKey={filterKey} />);
 }

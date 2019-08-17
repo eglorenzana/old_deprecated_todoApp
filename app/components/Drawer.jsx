@@ -1,6 +1,6 @@
 
 import React  from 'react';
-import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
+import { DrawerItems } from "react-navigation";
 import {
     View,
     Image,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const customDrawerContentComponent = function(props) {
+export default function customDrawerContentComponent(props) {
   return (
     <View style={styles.drawerContent}>
       <DrawerItems {...props} />
@@ -49,7 +49,7 @@ const customDrawerContentComponent = function(props) {
   );
 }
 
-const drawerNavigatorConfig = {
+export const DrawerNavigatorConfig = {
   drawerWidth: 250,
   drawerPosition: 'left',
   contentComponent: customDrawerContentComponent,
@@ -63,13 +63,4 @@ const drawerNavigatorConfig = {
       padding: 0,
     }
   },
-  initialRouteName: 'Notifications'
 }
-
-
-const AppNavigation = DrawerNavigator({
-  ...DrawerRoutes,
-}, drawerNavigatorConfig);
-
-
-export default AppNavigation

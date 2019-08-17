@@ -8,6 +8,9 @@ import { todoDateCategoryKeys, initialPropsForKeys } from 'app/utils/todoListUti
 import { saveNewItem } from 'app/utils/todoStorage';
 
 
+export const DATE_KEY_PROP = 'dateKey';
+export const SCREEN_NAME = 'CreateTodo';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -43,4 +46,14 @@ CreateTodo.propTypes = {
   dateKey: PropTypes.oneOf(todoDateCategoryKeys)
 };
 
+CreateTodo.navigationOptions = {
+  title: 'Create Todo',
+};
+
 export default CreateTodo;
+
+
+export function CreateTodoScreen(props) { // this is connected with a navigator
+  const dateKey = props.navigator.getParam(DATE_KEY_PROP);
+  return (<CreateTodo {...props} dateKey={dateKey} />)
+}

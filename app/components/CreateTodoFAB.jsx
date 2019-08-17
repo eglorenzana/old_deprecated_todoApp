@@ -2,8 +2,9 @@ import React from 'react'
 import { FloatingAction } from 'react-native-floating-action';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import MDIcon from 'react-native-vector-icons/MaterialDesign';
-import { actionsForMainFAB } from 'app/utils/todoListUtils';
 
+import { actionsForMainFAB } from 'app/utils/todoListUtils';
+import { DATE_KEY_PROP, SCREEN_NAME } from 'app/utils/CreateTodo'
 
 const actions = actionsForMainFAB.map((action) => {
   const { iconName, material, ...rest } = action;
@@ -16,12 +17,11 @@ const actions = actionsForMainFAB.map((action) => {
 
 export default function CreateTodoFAB(props) {
   const navigateToCreate = function(params = {}) {
-    // code for navigation and pass the params, something like:
-    // props.navigation.navigate(screenName, params)
+    props.navigation.navigate(SCREEN_NAME, params);
   }
 
   const handleSelectAction = function(actionName) {
-    navigateToCreate({ dateKey: actionName });
+    navigateToCreate({ [DATE_KEY_PROP]: actionName });
   }
 
   return (
